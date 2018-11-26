@@ -133,7 +133,7 @@ env.Append(
     ],
 
     LIBS=[
-        "arm_cortex%sl_math" % board.get("build.cpu")[7:9],
+        "arm_cortex%sl_math" % board.get("build.cpu")[7:9].upper(),
         "c", "m", "gcc", "stdc++", "c"  # two libc in order to fix linker error
     ],
 
@@ -149,7 +149,7 @@ env.Append(
 
 if "PIO_FRAMEWORK_ARDUINO_SERIAL_DISABLED" in env.Flatten(
         env.get("CPPDEFINES", [])):
-    env['CPPDEFINES'].remove("FFFFFHAL_UART_MODULE_ENABLED")
+    env['CPPDEFINES'].remove("HAL_UART_MODULE_ENABLED")
 
 elif "PIO_FRAMEWORK_ARDUINO_SERIAL_WITHOUT_GENERIC" in env.Flatten(
         env.get("CPPDEFINES", [])):
